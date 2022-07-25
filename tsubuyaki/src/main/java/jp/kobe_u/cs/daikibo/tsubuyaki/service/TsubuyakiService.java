@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jp.kobe_u.cs.daikibo.tsubuyaki.controller.KeywordForm;
 import jp.kobe_u.cs.daikibo.tsubuyaki.entity.Tsubuyaki;
 import jp.kobe_u.cs.daikibo.tsubuyaki.repository.TsubuyakiRepository;
 
@@ -50,6 +51,12 @@ public class TsubuyakiService {
 
         return list;
 
+    }
+
+    // キーワードでコメントを検索
+
+    public List<Tsubuyaki> searchTsubuyakiByKeyword(KeywordForm form) {
+        return repo.findAllByCommentContaining(form.getKeyword());
     }
 
 }

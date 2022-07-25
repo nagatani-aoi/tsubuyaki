@@ -42,6 +42,8 @@ public class TsubuyakiController {
 
         model.addAttribute("tsubuyakiForm", new TsubuyakiForm()); // 空フォームをセット
 
+        model.addAttribute("keywordForm", new KeywordForm()); // 空フォームをセット
+
         return "tsubuyaki_list"; // リスト画面を返す
 
     }
@@ -66,6 +68,17 @@ public class TsubuyakiController {
 
         return "redirect:/read"; // メイン画面に転送
 
+    }
+
+    @GetMapping("/serch")
+    String serchTsubuyakiByKeyword(@ModelAttribute("keywordForm") KeywordForm form, Model model) {
+        List<Tsubuyaki> list = ts.searchTsubuyakiByKeyword(form); // 全つぶやきを取得
+
+        model.addAttribute("num", list.size());
+
+        model.addAttribute("queryList", list);
+
+        return "serch";
     }
 
 }
