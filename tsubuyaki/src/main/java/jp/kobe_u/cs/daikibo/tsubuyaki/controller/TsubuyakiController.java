@@ -70,15 +70,15 @@ public class TsubuyakiController {
 
     }
 
-    @GetMapping("/serch")
-    String serchTsubuyakiByKeyword(@ModelAttribute("keywordForm") KeywordForm form, Model model) {
+    @GetMapping("/search")
+    String searchTsubuyakiByKeyword(@ModelAttribute("keywordForm") KeywordForm form, Model model) {
         List<Tsubuyaki> list = ts.searchTsubuyakiByKeyword(form); // 全つぶやきを取得
 
         model.addAttribute("num", list.size());
 
         model.addAttribute("queryList", list);
 
-        return "serch";
+        return "search";
     }
 
 }
